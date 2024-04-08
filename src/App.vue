@@ -1,19 +1,15 @@
 <script setup>
 import {reactive, ref} from 'vue'
 
-const titulo = ref('Hello')
 const produto= reactive({
   nome: '',
-  preco: 0,
-  quantidade: 10,
-  categorias: []
+  idade: 1,
+  senha: '',
+  consenha: 'consenha=senha'
 })
 
 const mostraResultado= ref(false)
 
-function formatarPreco(preco){
-  return `R$ ${preco.toFixed(2).replace('.', ',')}`
-}
 
 </script>
 
@@ -21,8 +17,8 @@ function formatarPreco(preco){
   <h1>{{ titulo }}</h1>
   <div class="contanier">
     <div class="formulario">
-      <h2>Formulário</h2>
-      <input type="text" v-model="titulo"/>
+      <h2>Dados pessoais:</h2>
+
       <form @submit.prevent="mostraResultado = !mostraResultado">
       <div class="row">
         <label for="">Nome:</label>
@@ -30,27 +26,34 @@ function formatarPreco(preco){
       </div>
 
       <div class="row">
-        <label for="">Preço:</label>
+        <label for="">Idade:</label>
         <input type="number" v-model="produto.preco"/>
       </div>
 
       <div class="row">
-        <label for="">Quantidade:</label>
-        <input type="number" v-model="produto.quantidade"/>
+        <label for="">Senha:</label>
+        <input type="password" v-model="produto.senha" />
       </div>
 
-      <button type="submit">Mostrar</button>
+      <div class="row">
+        <label for="">Confirmar senha:</label>
+        <input type="password" v-model="produto.consenha" />
+      </div>
+
+      <div class="row">
+        <label for="">Email:</label>
+        <input type="email" v-model="produto.email" />
+      </div>
+
+
+      <div class="row">
+        <label for="">Data de nascimento:</label>
+        <input type="date" v-model="produto.consenha" />
+      </div>
+
       </form>
     </div>
 
-    <div v-if="mostraResultado" class="resultado"> 
-      <h2>Resultado</h2> 
-      <p>Nome: {{ produto.nome }}</p> 
-      <p>Preço: {{ formatarPreco(produto.preco) }}</p> 
-      <p>Quantidade: {{ produto.quantidade }}</p> 
-      <p>Categorias: {{ produto.categorias }}</p> 
-      <p>{{ mostraResultado }}</p>
-    </div>
     
   </div>
 </template>
@@ -68,13 +71,12 @@ width: 100w;
 .formulario,
 .resultado {
   background-color:rgb(255, 255, 255);
-  width: 45%;
   border-radius: 10px;
   padding: 10px;
 }
 
 .formulario{
-  background-color:rgb(201, 181, 70);
+  background-color:rgba(201, 181, 70, 0.699);
 }
 
 .formulario.row{
